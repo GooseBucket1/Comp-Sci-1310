@@ -33,7 +33,8 @@ void Theater::addMovie(){
 };
 
 void Theater::editMovie(){
-    Movie.editMovie();
+    Movie movie;
+    movie.editMovie();
 };
 
 void Theater::addShowing(){
@@ -46,11 +47,13 @@ void Theater::editShowing(){
 };
 
 void Theater::printMovies(){
-    Movie.printMovie();
+    Movie movie;
+    movie.printMovie();
 };
 
 void Theater::printShowings(){
-
+    Showing showing;
+    showing.printShowing();
 };
 
 void Theater::printMovieNames(){
