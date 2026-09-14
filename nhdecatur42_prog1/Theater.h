@@ -4,8 +4,10 @@
 using namespace std;
 # include <iostream>
 # include <string>
+# include "Showing.h"
+# include "Movie.h"
 
-class Showing {
+class Theater {
     private:
         string theaterName;
         Movie** movieArray;
@@ -16,14 +18,14 @@ class Showing {
         int maxShowings;
     
     public:
-        Showing(){
+        Theater(){
             theaterName = "";
             numMovies = 0;
             maxMovies = 0;
             numShowings = 0;
             maxShowings = 0;
         }
-        Showing(string tN, int nM, int mM, int nS, int mS){
+        Theater(string tN, Movie** m, int nM, int mM, Showing** s, int nS, int mS){
             theaterName = tN;
             numMovies = nM;
             maxMovies = mM;
@@ -31,8 +33,9 @@ class Showing {
             maxShowings =  mS;
         };
 
-        int getNumMovies();
-        int getNumShowings();
+        int getNumMovies() const;
+        int getNumShowings() const;
+
         void addMovie();
         void editMovie();
         void addShowing();

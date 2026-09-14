@@ -27,15 +27,17 @@ class Movie {
             rating = r;
         };
         
-        void setTitle();
-        void setReleaseYear();
-        void setRuntimeMinutes();
-        void setRating();
+        void setTitle(string t);
+        void setReleaseYear(int y);
+        void setRuntimeMinutes(int m);
+        void setRating(string r);
+
         string getTitle();
         int getReleaseYear();
         int getRuntimeMinutes();
         string getRating();
-        void editMovie();
+
+        void editMovie(); 
         void printMovie();
 };
 

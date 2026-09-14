@@ -4,6 +4,7 @@
 using namespace std;
 # include <iostream>
 # include <string>
+# include "Movie.h"
 
 class Showing {
     private:
@@ -29,15 +30,18 @@ class Showing {
         };
 
         void setMovie();
-        void setShowTime();
-        void setAuditoriumNumber();
-        void setTicketPrice();
-        void setSeatsAvailable ();
+        void setShowTime(string s);
+        void setAuditoriumNumber(int a);
+        void setTicketPrice(float p);
+        void setSeatsAvailable(int sA);
+
         Movie* getMovie();
+
         string getShowTime();
         int getAuditoriumNumber();
         float getTicketPrice();
         int getSeatsAvalable();
+
         void editShowing();
         void printShowing();
 

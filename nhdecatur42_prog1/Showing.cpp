@@ -1,52 +1,53 @@
-using namespace std;
-# include <iostream>
-# include <string>
 # include "Showing.h"
 
-void setMovie(){
-
+void Showing::setMovie(){
+// add something here
 };
 
-void setShowTime(){
-
+void Showing::setShowTime(string s){
+    showTime = s;
 };
 
-void setAuditoriumNumber(){
-
+void Showing::setAuditoriumNumber(int a){
+    auditoriumNumber = a;
 };
 
-void setTicketPrice(){
-
+void Showing::setTicketPrice(float p){
+    ticketPrice = p;
 };
 
-void setSeatsAvailable (){
-
+void Showing::setSeatsAvailable (int sA){
+    seatsAvailable = sA;
 };
 
-Movie* getMovie(){
-
+Movie* Showing::getMovie(){
+    return movie;
 };
 
-string getShowTime(){
-
+string Showing::getShowTime(){
+    return showTime;
 };
 
-int getAuditoriumNumber(){
-
+int Showing::getAuditoriumNumber(){
+    return auditoriumNumber;
 };
 
-float getTicketPrice(){
-
+float Showing::getTicketPrice(){
+    return ticketPrice;
 };
 
-int getSeatsAvalable(){
-
+int Showing::getSeatsAvalable(){
+    return  seatsAvailable;
 };
 
-void editShowing(){
-
-};
-
-void printShowing(){
+void Showing::editShowing(){
     
+};
+
+void Showing::printShowing(){
+    cout << "\nMovie: ";
+    cout << "Show Time: " << showTime << endl;
+    cout << "Auditorium: " << auditoriumNumber << endl;
+    cout << "Ticket Price: " << ticketPrice << endl;
+    cout << "Seats Available: " << seatsAvailable << endl;
 };
