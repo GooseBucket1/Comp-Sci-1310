@@ -3,6 +3,7 @@
 
 using namespace std;
 # include <iostream>
+# include <iomanip>
 # include <string>
 # include "Showing.h"
 # include "Movie.h"
@@ -18,24 +19,32 @@ class Theater {
         int maxShowings;
     
     public:
-        Theater(){
-            theaterName = "";
-            numMovies = 0;
-            maxMovies = 0;
-            numShowings = 0;
-            maxShowings = 0;
-        }
-        //Movie** and Showing** are created inside the function
-        Theater(string tN, int nM, int mM, int nS, int mS){
+        Theater(string tN, int mM, int mS){
             theaterName = tN;
-            numMovies = nM;
-            maxMovies = mM;
-            numShowings = nS;
-            maxShowings =  mS;
-        };
 
-        int getNumMovies() const;
-        int getNumShowings() const;
+            numMovies = 0;
+            maxMovies = mM;
+            
+            numShowings = 0;
+            maxShowings =  mS;
+
+            movieArray = new Movie*[maxMovies];
+            showingArray = new Showing*[maxShowings];
+        }
+        ~Theater(){
+            for (int i = 0; i < numMovies; i++){
+                delete movieArray[i];
+            }
+            delete movieArray;
+
+            for(int i = 0; i < numShowings; i++){
+                delete showingArray[i];
+            }
+            delete showingArray;
+        }
+
+        int getNumMovies();
+        int getNumShowings();
 
         void addMovie();
         void editMovie();

@@ -4,11 +4,11 @@ using namespace std;
 # include "Theater.h"
 
 
-int Theater::getNumMovies() const{
+int Theater::getNumMovies(){
     return numMovies;
 };
 
-int Theater::getNumShowings() const{
+int Theater::getNumShowings(){
     return numShowings;
 };
 

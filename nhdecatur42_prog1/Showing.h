@@ -3,6 +3,7 @@
 
 using namespace std;
 # include <iostream>
+# include <iomanip>
 # include <string>
 # include "Movie.h"
 
@@ -27,7 +28,7 @@ class Showing {
             auditoriumNumber = a;
             ticketPrice = p;
             seatsAvailable = sA; 
-        };
+        }
 
         void setMovie();
         void setShowTime(string s);

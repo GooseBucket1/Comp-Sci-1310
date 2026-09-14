@@ -3,6 +3,7 @@
 
 using namespace std;
 # include <iostream>
+# include <iomanip>
 # include <string>
 
 class Movie {
@@ -18,14 +19,14 @@ class Movie {
             releaseYear = 0;
             runtimeMinutes = 0;
             rating = "";
-        };
+        }
 
         Movie(string t, int y, int m, string r){
             title = t;
             releaseYear = y;
             runtimeMinutes = m;
             rating = r;
-        };
+        }
         
         void setTitle(string t);
         void setReleaseYear(int y);

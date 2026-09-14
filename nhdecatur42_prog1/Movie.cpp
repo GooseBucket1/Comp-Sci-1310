@@ -45,25 +45,19 @@ void Movie::editMovie() {
 
     do {
         cout << "\nWhat movie would you like to edit";
-        cout << "1. Title";
-        cout << "2. Release Year";
-        cout << "3. Runtime";
-        cout << "4. Rating";
-        cout << "5. Done Editing";
-        cout << "CHOOSE 1-5: ";
+        cout << "\n1. Title";
+        cout << "\n2. Release Year";
+        cout << "\n3. Runtime";
+        cout << "\n4. Rating";
+        cout << "\n5. Done Editing";
+        cout << "\nCHOOSE 1-5: ";
         cin >> choice;
 
         while(!cin || choice < 1 || choice > 5){
-            if(!cin){
-                cin.clear();
-                cin.ignore(10000, '\n');
-                cout << "\n Oops! I don't think thats right.";
-            }
-            else
-                cout << "\n You didn't enter a number in the range. Try again!";
-
-                cout << "Enter 1-5: ";
-                cin >> choice;
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "\n Oops! I don't think thats right.";
+        
         }
         switch(choice){
             case 1:
