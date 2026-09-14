@@ -18,16 +18,16 @@ void Theater::addMovie(){
         cout << "Sorry, no more movies can be added. You have hit max xapacity.";
     }else {
         cout << "Movie title: ";
-        cin >> (Movie).title;
+        cin >> ;
 
         cout << "Release year: ";
-        cin >> releaseYear;
+        cin >> ;
 
         cout << "Runtime in minuets: ";
-        cin >> runtimeMinutes;
+        cin >> ;
 
         cout << "Rating: ";
-        cin >> rating;
+        cin >> ;
 
     }
 };

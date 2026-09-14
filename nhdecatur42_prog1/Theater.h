@@ -25,7 +25,7 @@ class Theater {
             numShowings = 0;
             maxShowings = 0;
         }
-        Theater(string tN, Movie** m, int nM, int mM, Showing** s, int nS, int mS){
+        Theater(string tN, Movie**, int nM, int mM, Showing**, int nS, int mS){
             theaterName = tN;
             numMovies = nM;
             maxMovies = mM;
