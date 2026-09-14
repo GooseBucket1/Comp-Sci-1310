@@ -25,7 +25,8 @@ class Theater {
             numShowings = 0;
             maxShowings = 0;
         }
-        Theater(string tN, Movie**, int nM, int mM, Showing**, int nS, int mS){
+        //Movie** and Showing** are created inside the function
+        Theater(string tN, int nM, int mM, int nS, int mS){
             theaterName = tN;
             numMovies = nM;
             maxMovies = mM;
