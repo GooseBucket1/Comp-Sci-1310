@@ -48,42 +48,39 @@ void Theater::editMovie(){
     if(numMovies == 0){
         cout << "You have no movies";
     }else{
-        Movie movie;
-        movie.editMovie();
+        (*movieArray)->editMovie(); //here
     }
 };
 
 void Theater::addShowing(){
-    int choice;
-    cout << "CHOOSE 1-7: ";
-    //print list of movies
-    cout << "Which movie is being shown? ";
-    if (numMovies < 1){
-        cout << "You must have at least one movie befor creating a showing.";
-    }else {
-        cout << "Which movie is being shown? ";
-        cin >> choice;
-            while(!cin || choice < numMovies || choice > numMovies){
-                if(!cin){
-                    cin.clear();
-                    cin.ignore(10000, '\n');
-                    cout << "Oops! wrong data type.";
-                }else
-                    cout << "Oops! You didn't enter a valid movie number.";
-                cout << "\nWhich movie is being shown? ";
-                cin >> choice;
-            } 
+    if(numMovies == 0){
+        cout << "There are no movies in your list";
+    }else if (numShowings == maxShowings){
+        cout << "Your showing list is full";
+    }else{
+        int auditoriumNum;
+        int seatsAval;
+        float ticketPrice;
+        string showTime;
+        Movie* title;
+
+        cout << "----------" << title << "----------";
+
+        cout << "Show time (example: 7:30 PM): ";
+        cin >> showTime;
+
+        cout << "Auditorium number: ";
+        cin >> auditoriumNum;
+
+        cout << "Ticket price: $";
+        cin >> ticketPrice;
+
+        cout << "Seats available: ";
+        cin >> seatsAval;
+
+        cout << "Showing was added";
+        
     }
-    // store all this showing info
-    cout << "Show time (example: 7:30 PM): ";
-        Showing::setShowTime;
-    cout << "Auditorium number: ";
-        Showing::getAuditoriumNumber;
-    cout << "Ticket price: $";
-        Showing::getTicketPrice;    
-    cout << "Seats available: ";
-        Showing::getSeatsAvalable;
-    cout << "Showing was added";
 
 };
 
@@ -91,8 +88,7 @@ void Theater::editShowing(){
     if(numShowings == 0){
         cout << "You have no showings";
     }else{
-        Showing showing;
-        showing.editShowing();
+        (*showingArray)->editShowing(); //here
     }
 };
 

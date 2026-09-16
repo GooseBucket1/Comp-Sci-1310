@@ -19,7 +19,7 @@ class Showing {
         Showing(){
             showTime = "";
             auditoriumNumber = 0;
-            ticketPrice = 0;
+            ticketPrice = 0.00;
             seatsAvailable = 0; 
         }
 
