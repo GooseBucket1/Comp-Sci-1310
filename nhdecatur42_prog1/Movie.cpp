@@ -62,7 +62,6 @@ void Movie::editMovie() {
             cin >> choice;
         }
         
-        cin.ignore(100);
 
         switch(choice){
             case 1:

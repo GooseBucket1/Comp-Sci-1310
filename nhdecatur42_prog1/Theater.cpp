@@ -24,6 +24,7 @@ void Theater::addMovie(){
         int runtimeMinutes;
         string rating;
 
+        cin.ignore();
         cout << "Movie title: ";
         getline(cin, title);
 
