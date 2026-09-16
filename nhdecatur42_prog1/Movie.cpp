@@ -45,7 +45,7 @@ void Movie::editMovie() {
     int choice;
 
     do {
-        cout << "\nWhat movie would you like to edit";
+        cout << "\nWhat would you like to edit";
         cout << "\n1. Title";
         cout << "\n2. Release Year";
         cout << "\n3. Runtime";
@@ -65,6 +65,7 @@ void Movie::editMovie() {
 
         switch(choice){
             case 1:
+                cin.ignore();
                 cout << "Current title: " << title << endl;
                 cout << "New title: ";
                 getline(cin, title, '\n');
@@ -93,6 +94,7 @@ void Movie::editMovie() {
                 }
 
             case 4: 
+            cin.ignore();
                 cout << "Current rating: " << rating << endl;
                 cout << "New rating: ";
                 getline(cin, rating, '\n');
