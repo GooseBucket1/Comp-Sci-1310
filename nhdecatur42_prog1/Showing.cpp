@@ -125,7 +125,10 @@ void Showing::editShowing(){
 };
 
 void Showing::printShowing(){
-    cout << "\nMovie: ";
+    //string title;
+    //title = (*movie).getTitle();
+
+    //cout << "\nMovie: " << title << endl;
     cout << "Show Time: " << showTime << endl;
     cout << "Auditorium: " << auditoriumNumber << endl;
     cout << "Ticket Price: " << ticketPrice << endl;

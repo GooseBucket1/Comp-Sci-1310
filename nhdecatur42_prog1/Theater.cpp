@@ -14,7 +14,7 @@ int Theater::getNumShowings(){
 
 void Theater::addMovie(){
     if (numMovies >= maxMovies){
-        cout << "Sorry, no more movies can be added. You have hit max xapacity.";
+        cout << "Sorry, no more movies can be added. You have hit max capacity.";
     }else if (numMovies == maxMovies){
         cout << "Your movie list is full!";
     }else {
@@ -76,15 +76,15 @@ void Theater::addShowing(){
         Movie* title;
         
         int choice;
-        cin.ignore();
         printMovieNames();
-        cout << "Which movie is being shown? ";
+        cout << "\nWhich movie is being shown? ";
         cin >> choice;
+
+        cin.ignore();
 
         cout << "Show time (example: 7:30 PM): ";
         getline(cin, showTime);
 
-        cin.ignore();
         cout << "Auditorium number: ";
         cin >> auditoriumNumber;
 
@@ -135,7 +135,7 @@ void Theater::printMovieNames(){
         cout << "There are no movies names to print";
     }else{
         for(int i = 0; i < numMovies; i++){
-            cout << "\nMovie #" << i + 1 << (*movieArray[i]).getTitle();
+            cout << "\nMovie #" << i + 1 << "   " << (*movieArray[i]).getTitle();
         }
     }
 };
@@ -145,7 +145,7 @@ void Theater::printShowingNames(){
         cout << "You must have at least one movie before a showing";
     }else{
         for(int i = 0; i < numShowings; i++){
-            cout << "\nShowing #" << i + 1 << (*(*showingArray[i]).getMovie()).getTitle() <<(*showingArray[i]).getShowTime();
+            cout << "\nShowing #" << i + 1 << " " << (*(*showingArray[i]).getMovie()).getTitle() <<(*showingArray[i]).getShowTime();
         }
     }
 };
