@@ -1,6 +1,15 @@
+/*
+Name: Noelle Decatur
+file: Showing.cpp
+Purpose: define functions for Showing.h
+*/
+
 # include "Showing.h"
 # include <iostream>
 
+/*
+These get the names. show time, ect and returns them
+*/
 void Showing::setMovie(Movie* m){
     movie = m;
 };
@@ -41,6 +50,9 @@ int Showing::getSeatsAvalable(){
     return  seatsAvailable;
 };
 
+/*
+This edits the specific section of the showing
+*/
 void Showing::editShowing(){
     int choice;
 
@@ -124,6 +136,7 @@ void Showing::editShowing(){
     cout << "end of showimg editing\n";
 };
 
+//here I was not sure how to print the movie title I feel like I tried everything
 void Showing::printShowing(){
     //string title;
     //title = (*movie).getTitle();

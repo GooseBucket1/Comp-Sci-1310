@@ -1,3 +1,9 @@
+/*
+Name: Noelle Decatur
+file: Theater.h
+Purpose: to store class and function calls
+*/
+
 #ifndef THEATER_H
 #define THEATER_H
 
@@ -31,7 +37,7 @@ class Theater {
             movieArray = new Movie*[maxMovies];
             showingArray = new Showing*[maxShowings];
         }
-        ~Theater(){
+        ~Theater(){ //this will delete anything unnessisary
             for (int i = 0; i < numMovies; i++){
                 delete movieArray[i];
             }
@@ -43,6 +49,7 @@ class Theater {
             delete showingArray;
         }
 
+        // functon calls
         int getNumMovies();
         int getNumShowings();
 

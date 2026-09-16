@@ -1,3 +1,9 @@
+/*
+Name: Noelle Decatur
+file: Movie.h
+Purpose: to store class and function calls
+*/
+
 #ifndef MOVIE_H
 #define MOVIE_H
 
@@ -6,6 +12,7 @@ using namespace std;
 # include <iomanip>
 # include <string>
 
+// movie class
 class Movie {
     private:
         string title;
@@ -15,6 +22,7 @@ class Movie {
     
     public:
         Movie(){
+            // this is just defalt if nothing is there it will just leave it blank
             title = "";
             releaseYear = 0;
             runtimeMinutes = 0;
@@ -28,6 +36,7 @@ class Movie {
             rating = r;
         }
         
+        // function calls
         void setTitle(string t);
         void setReleaseYear(int y);
         void setRuntimeMinutes(int m);

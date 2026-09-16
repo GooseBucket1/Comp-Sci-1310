@@ -1,3 +1,9 @@
+/*
+Name: Noelle Decatur
+file: SHowing.h
+Purpose: to store class and function calls
+*/
+
 #ifndef SHOWING_H
 #define SHOWING_H
 
@@ -7,6 +13,7 @@ using namespace std;
 # include <string>
 # include "Movie.h"
 
+// class for showing this is where everything is stored
 class Showing {
     private:
         Movie* movie;
@@ -17,6 +24,7 @@ class Showing {
     
     public:
         Showing(){
+            // this is just defalt if nothing is there it will just leave it blank
             showTime = "";
             auditoriumNumber = 0;
             ticketPrice = 0.00;
@@ -31,6 +39,7 @@ class Showing {
             seatsAvailable = sA; 
         }
 
+        // all function calls
         void setMovie(Movie* m);
         void setShowTime(string s);
         void setAuditoriumNumber(int a);

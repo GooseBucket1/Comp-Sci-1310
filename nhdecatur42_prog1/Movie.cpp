@@ -2,13 +2,16 @@
     Name of file: Movie.cpp
     Program 1 CSC 1310
     Authour: Noelle Decatur
+    purpose: define functions for Movie.h
 */
 
 
 # include "Movie.h"
 # include <iostream>
 
-
+/*
+gets title, release year, ect stores it and returns it
+*/
 void Movie::setTitle(string t){
     title = t;
 };
@@ -41,6 +44,11 @@ string Movie::getRating() {
     return rating;
 };
 
+
+/*
+This is the function to edit any type of aspect of the movie
+information.
+*/
 void Movie::editMovie() {
     int choice;
 
@@ -75,6 +83,7 @@ void Movie::editMovie() {
                 cout << "Current releasr year: " << releaseYear << endl;
                 cout << "New release year: ";
                 cin >> releaseYear;
+                // checks to make sure your writing a number not a word
                 while(!cin){
                     cin.clear();
                     cin.ignore(10000, '\n');
@@ -107,7 +116,7 @@ void Movie::editMovie() {
 };
 
 
-
+// prints movie information
 void Movie::printMovie(){
     cout << "\nTitle: " << title << endl;
     cout << "Release Year: " << releaseYear << endl;

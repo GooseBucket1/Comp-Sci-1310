@@ -1,3 +1,9 @@
+/*
+Name: Noelle Decatur
+file: Theater.cpp
+Purpose: define functions for Theater.h and hub for Driver.cpp to go to other areas
+*/
+
 using namespace std;
 # include <iostream>
 # include <string>
@@ -12,6 +18,9 @@ int Theater::getNumShowings(){
     return numShowings;
 };
 
+/*
+This creats the diffrent movie information and stores them
+*/
 void Theater::addMovie(){
     if (numMovies >= maxMovies){
         cout << "Sorry, no more movies can be added. You have hit max capacity.";
@@ -42,7 +51,10 @@ void Theater::addMovie(){
         
     }
 };
-
+/*
+This brings you to the movie.cpp to let you edit the indivdual choises
+and checks that you have movies
+*/
 void Theater::editMovie(){
     if(numMovies == 0){
         cout << "You have no movies";
@@ -63,6 +75,9 @@ void Theater::editMovie(){
     }
 };
 
+/*
+This adds a sowing kinda like how addMovie works but it goes to the Showing.cpp
+*/
 void Theater::addShowing(){
     if(numMovies == 0){
         cout << "There are no movies in your list";
@@ -102,14 +117,21 @@ void Theater::addShowing(){
 
 };
 
+/*
+This brings you to the edit showing
+*/
 void Theater::editShowing(){
     if(numShowings == 0){
         cout << "You have no showings";
     }else{
-        (*showingArray)->editShowing();
+        (*showingArray)->editShowing(); // directs you to the editShowing
     }
 };
 
+
+/*
+These go print the movies and the other showing in there respective .cpp's
+*/
 void Theater::printMovies(){
     if(numMovies == 0){
         cout << "You have no movies";
