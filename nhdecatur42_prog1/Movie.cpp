@@ -6,6 +6,7 @@
 
 
 # include "Movie.h"
+# include <iostream>
 
 
 void Movie::setTitle(string t){
@@ -56,35 +57,51 @@ void Movie::editMovie() {
         while(!cin || choice < 1 || choice > 5){
             cin.clear();
             cin.ignore(10000, '\n');
-            cout << "\n Oops! I don't think thats right.";
-        
+            cout << "\nOops thats not a valild inpit.";
+            cout << "Please choose 1-5: ";
+            cin >> choice;
         }
+        
+        cin.ignore(100);
+
         switch(choice){
             case 1:
                 cout << "Current title: " << title << endl;
                 cout << "New title: ";
-                cin >> title;
+                getline(cin, title, '\n');
+                break;
 
             case 2:
-                cout << "Current title: " << releaseYear << endl;
+                cout << "Current releasr year: " << releaseYear << endl;
                 cout << "New release year: ";
                 cin >> releaseYear;
+                while(!cin){
+                    cin.clear();
+                    cin.ignore(10000, '\n');
+                    cout << "That is not a year please enter a valid year: ";
+                    cin >> releaseYear;
+                }
 
             case 3:
-                cout << "Current title: " << runtimeMinutes << endl;
+                cout << "Current runtime: " << runtimeMinutes << endl;
                 cout << "New run time: ";
                 cin >> runtimeMinutes;
+                while(!cin){
+                    cin.clear();
+                    cin.ignore(10000, '\n');
+                    cout << "That is not a year please enter a valid year: ";
+                    cin >> releaseYear;
+                }
 
             case 4: 
-                cout << "Current title: " << rating << endl;
+                cout << "Current rating: " << rating << endl;
                 cout << "New rating: ";
-                cin >> rating;
-                
+                getline(cin, rating, '\n');
+                break;  
         }
 
     }while(choice != 5);
     cout << "end of movie editing\n";
-
 
 };
 

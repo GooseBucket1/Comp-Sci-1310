@@ -23,14 +23,15 @@ class Showing {
             seatsAvailable = 0; 
         }
 
-        Showing(string s, int a, float p, int sA){
+        Showing(Movie* m, string s, int a, float p, int sA){
+            movie = m;
             showTime = s;
             auditoriumNumber = a;
             ticketPrice = p;
             seatsAvailable = sA; 
         }
 
-        void setMovie();
+        void setMovie(Movie* m);
         void setShowTime(string s);
         void setAuditoriumNumber(int a);
         void setTicketPrice(float p);

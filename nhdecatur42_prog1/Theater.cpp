@@ -16,25 +16,40 @@ void Theater::addMovie(){
 
     if (numMovies >= maxMovies){
         cout << "Sorry, no more movies can be added. You have hit max xapacity.";
+    }else if (numMovies == maxMovies){
+        cout << "Your movie list is full!";
     }else {
+        string title;
+        int releaseYear;
+        int runtimeMinutes;
+        string rating;
+
         cout << "Movie title: ";
-        Movie::setTitle;
+        getline(cin, title);
 
         cout << "Release year: ";
-        Movie::setReleaseYear;
+        cin >> releaseYear;
 
-        cout << "Runtime in minuets: ";
-        Movie::setRuntimeMinutes;
+        cout << "Runtime in minutes: ";
+        cin >> runtimeMinutes;
 
+        cin.ignore();
         cout << "Rating: ";
-        Movie::setRating;
+        getline(cin, rating);
 
+        movieArray[numMovies] = new Movie(title, releaseYear, runtimeMinutes, rating);
+        numMovies++;
+        
     }
 };
 
 void Theater::editMovie(){
-    Movie movie;
-    movie.editMovie();
+    if(numMovies == 0){
+        cout << "You have no movies";
+    }else{
+        Movie movie;
+        movie.editMovie();
+    }
 };
 
 void Theater::addShowing(){
@@ -43,7 +58,7 @@ void Theater::addShowing(){
     //print list of movies
     cout << "Which movie is being shown? ";
     if (numMovies < 1){
-        cout << "You muct have at least one movie befor creating a showing.";
+        cout << "You must have at least one movie befor creating a showing.";
     }else {
         cout << "Which movie is being shown? ";
         cin >> choice;
@@ -72,24 +87,50 @@ void Theater::addShowing(){
 };
 
 void Theater::editShowing(){
-    Showing showing;
-    showing.editShowing();
+    if(numShowings == 0){
+        cout << "You have no showings";
+    }else{
+        Showing showing;
+        showing.editShowing();
+    }
 };
 
 void Theater::printMovies(){
-    Movie movie;
-    movie.printMovie();
+    if(numMovies == 0){
+        cout << "You have no movies";
+    }else{
+        for(int i = 0; i < numMovies; i++){
+            (*movieArray[i]).printMovie();
+        }
+    }
 };
 
 void Theater::printShowings(){
-    Showing showing;
-    showing.printShowing();
+    if(numShowings == 0){
+        cout << "You have no showings";
+    }else{
+        for(int i = 0; i < numShowings; i++){
+            (*showingArray[i]).printShowing();
+        }
+    }
 };
 
 void Theater::printMovieNames(){
-    
+    if(numMovies == 0){
+        cout << "There are no movies names to print";
+    }else{
+        for(int i = 0; i < numMovies; i++){
+            cout << "\nMovie #" << i + 1 << (*movieArray[i]).getTitle();
+        }
+    }
 };
 
 void Theater::printShowingNames(){
-    
+    if(numMovies == 0){
+        cout << "You must have at least one movie before a showing";
+    }else{
+        for(int i = 0; i < numShowings; i++){
+            cout << "\nShowing #" << i + 1 << (*(*showingArray[i]).getMovie()).getTitle() <<(*showingArray[i]).getShowTime();
+        }
+    }
 };
