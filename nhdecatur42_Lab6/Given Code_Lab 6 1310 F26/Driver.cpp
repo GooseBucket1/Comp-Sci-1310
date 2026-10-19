@@ -23,9 +23,8 @@ vector<string> parseCSVLine(string);
 
 int main()
 {
-	//!!!!!     LOOK     !!!!! Create the LinkedList object (and call it list)
-	
-	
+	//!!!!!     LOOK     !!!!! Create the LinkedList object (and call it list
+	LinkedList list; // added
 	ifstream inFile;
 	string line;
 	string track_id,artist,album_name,track_name,track_genre;
@@ -59,9 +58,10 @@ int main()
 		//cout << "Num: " << num << endl;
 		
 		//!!!!!     LOOK     !!!!! now create the Track object
-		
+		Track(track_id, popularity, artist, track_name);
 		//!!!!!     LOOK     !!!!! now append to linked list
-		
+		Track song; 
+		list.appendNode(song);
 	}
 			
 	cout << "\nThe list now has " << list.getLength() << " nodes with Spotify Music Tracks.\n";
@@ -81,7 +81,7 @@ int main()
 		}
 		
 		//!!!!!     LOOK     !!!!! now call the displayNode() function for the list object
-		
+		list.displayNode(num);
 	
 		cout << "\n\nDisplay another? Enter y or n:  ";
 		cin >> yesno;
