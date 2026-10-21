@@ -58,9 +58,8 @@ int main()
 		//cout << "Num: " << num << endl;
 		
 		//!!!!!     LOOK     !!!!! now create the Track object
-		Track(track_id, popularity, artist, track_name);
+		Track song(track_id, popularity, artist, track_name);
 		//!!!!!     LOOK     !!!!! now append to linked list
-		Track song; 
 		list.appendNode(song);
 	}
 			

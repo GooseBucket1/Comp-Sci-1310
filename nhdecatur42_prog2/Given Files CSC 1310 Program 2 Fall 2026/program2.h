@@ -11,6 +11,7 @@
 #ifndef PROGRAM2_H
 #define PROGRAM2_H
 
+#include <iostream>
 #include <vector>
 #include <string>
 
@@ -28,5 +29,11 @@ void scramble(vector<T>&);
  * function 
  ********************************************************/
 
+void bubbleSort (int, int);
+void MergeSort (int, int, int);
+void Merge (int, int, int, int);
+void quickSort (int, int, int);
+int partition (int, int, int);
+void parallelQuickSort(vector, int, int);
 
 #endif

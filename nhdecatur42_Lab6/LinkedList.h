@@ -30,7 +30,7 @@ class LinkedList{
             tail = NULL;
         };
 
-        // this changees the node adding on to it
+        // this changes the node adding on to it
         void appendNode(Track song){
             Node *newNode;
 
@@ -51,6 +51,7 @@ class LinkedList{
         void displayNode(int pos){
             Node *nodePtr;
             int currentPos = 0;
+            // checks that the head does not equal null
             if(head != NULL){
                 nodePtr = head;
             
@@ -62,11 +63,13 @@ class LinkedList{
                     nodePtr = (*nodePtr).next;
                 }
             }else{
+                // if there are no songs in the list the it will print this
                 cout <<"\nThere are no songs in the list.\n\n";
             }
             return;
         }
 
+        // gets the length of the text
         int getLength(){
             int count = 0;
             Node *nodePtr;
@@ -83,20 +86,20 @@ class LinkedList{
         }
 
         ~LinkedList(){
-            Node *nodePtr;
-            Node *nextNode;
+            Node *nodePtr; // points to the list
+            Node *nextNode; // points to next node
             int numDelete = 0;
 
             nodePtr = head;
 
-            while (nodePtr){
+            while (nodePtr != NULL){
                 nextNode = (*nodePtr).next;
                 delete nodePtr;
 
                 nodePtr = nextNode;
                 numDelete++;
             }
-            cout << numDelete << "songs deleted\n";
+            cout << numDelete << " songs deleted\n";
         }
 };
 

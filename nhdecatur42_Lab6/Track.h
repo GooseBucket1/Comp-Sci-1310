@@ -1,3 +1,9 @@
+/*
+    Name: Noelle Decatur
+    File Name: Track.h
+*/
+
+
 #ifndef TRACK_H
 #define TRACK_H
 
@@ -26,6 +32,7 @@ class Track{
             artist = art;
             track_name = tName;
         }
+        // this is what will print to the screen
         friend ostream &operator << (ostream &strm, Track &a){
             strm << "Track ID: " << a.track_id << "\n"
             << "Popularity: " << a.popularity << "\n"
