@@ -34,6 +34,7 @@ void MergeSort (int, int, int);
 void Merge (int, int, int, int);
 void quickSort (int, int, int);
 int partition (int, int, int);
-void parallelQuickSort(vector, int, int);
+void parallelQuickSort(vector<string>&, int, int);
+void parallelMergSort(vector<string>&, int, int, int);
 
 #endif

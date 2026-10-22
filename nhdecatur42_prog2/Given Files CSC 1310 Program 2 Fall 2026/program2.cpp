@@ -106,19 +106,6 @@ int main()
 		
      *********************************************************************************/
 	
-	void bubbleSort(int *arr, int size){
-		int tempForSwap;
-		for(int i = 0; i < size - 1; i++){
-			for(int j = 0; j < size - i - 1; j++){
-				if(arr[j] > arr[j + 1]){
-					tempForSwap = arr[j];
-					arr[j] = arr[j + 1];
-					arr[j + 1] = tempForSwap;
-				}
-			}
-		}
-	}
-
 
     /*********************************************************************************
 		MERGE SORT
@@ -127,51 +114,6 @@ int main()
 		mergeSort function
      *********************************************************************************/
 
-	void MergSort(int arr[], int beg, int end){
-		int mid = 0;
-
-		if (beg < end){
-			mid = (beg + end) / 2;
-
-			MergeSort(arr, beg, mid);
-			MergeSort(arr, mid + 1, end);
-			Merge(arr, beg, mid, end);
-		}
-	}
-
-	void Merge (int arr[], int left, int mid, int right){
-		int n1 = mid - left + 1;
-		int n2 = right - mid;
-
-		int* Ll = new int[n1];
-		int* R = new int[n2];
-
-		for (int i = 0; i < n1; ++i){
-			L[i] = arr[left + 1];
-		}
-		for (int J = 0; j < n2; ++i){
-			R[j] = arr[mid + 1 + j];
-		}
-
-		inti = 0, j = 0, k = left;
-		while (i < n1 && j < n2){
-			if (L[i] <= R[j]){
-				arr[k++] = L[i++];
-			}else{
-				arr[k++] = R[j++];
-			}
-		}
-
-		while (i < n1){
-			arr[k++] = L[i++];
-		}
-		while (j < n2){
-			arr[k++] = R[j++];
-		}
-		
-		delete[] L;
-		delete[] R;
-	}
 
     /*********************************************************************************
 		PARALLEL MERGE SORT
@@ -181,7 +123,6 @@ int main()
      *********************************************************************************/
 
 
-
     /*********************************************************************************
 		QUICK SORT
 		
@@ -189,38 +130,6 @@ int main()
 		quicksort function
      *********************************************************************************/
 
-	void quickSort (int *arr, int left, int right){
-		int split = 0;
-
-		if (left >= right){
-			return;
-		}
-
-		spit = partition(arr, left, right);
-		quickSort(arr, left, split);
-		quicksort(arr, split + 1, right);
-	}
-
-	int partition (int *arr, int left, int right) {
-		int pivot = arr[left];
-		left--;
-		right++;
-		while(left < right){
-
-			do{
-				right--;
-			}while(arrr[right] > pivot);
-			
-			do{
-				left++;
-			}while(arr[left] < pivot);
-
-			if(left < right){
-				swap(arr[left], arr[right]);
-			}
-		}
-		return right;
-	}
 
     /*********************************************************************************
 		PARALLEL QUICK SORT
@@ -228,21 +137,6 @@ int main()
 		do all the same stuff described in bubble sort except call the 
 		parallelQuickSort function
      *********************************************************************************/
-
-	void parallelQuickSort(vector<string>7 v, int low, int high){
-		if(low < high){
-			int pivot = partition(v, low, high);
-
-			#pragma omp task shared(v) if(high-low > 10000)
-			parallelQuickSort(v, low, pivot -1);
-
-			#pragma omp tase chared(v) if(high-low > 10000)
-			parallelQuickSort(v, pivot +1, high);
-
-			#pragma omp taskwait
-		}
-	}
-	
 
     return 0; 
 }
@@ -320,3 +214,153 @@ void scramble(vector<T>& v)
  *************************************************/
 
 // Implement all the sort algorithms below that were described in the assignment
+
+/*
+Bubble Sort
+*/
+void bubbleSort(int *arr, int size){
+		int tempForSwap;
+		for(int i = 0; i < size - 1; i++){
+			for(int j = 0; j < size - i - 1; j++){
+				if(arr[j] > arr[j + 1]){
+					tempForSwap = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = tempForSwap;
+				}
+			}
+		}
+	}
+
+	/*
+	Merg Sort
+	*/
+	void MergSort(int arr[], int beg, int end){
+		int mid = 0;
+
+		if (beg < end){
+			mid = (beg + end) / 2;
+
+			MergeSort(arr, beg, mid);
+			MergeSort(arr, mid + 1, end);
+			Merge(arr, beg, mid, end);
+		}
+	}
+
+	/*
+	Merge function
+	*/
+	void Merge (int arr[], int left, int mid, int right){
+		int n1 = mid - left + 1;
+		int n2 = right - mid;
+
+		int* L = new int[n1];
+		int* R = new int[n2];
+
+		for (int i = 0; i < n1; ++i){
+			L[i] = arr[left + 1];
+		}
+		for (int J = 0; j < n2; ++i){
+			R[j] = arr[mid + 1 + j];
+		}
+
+		inti = 0, j = 0, k = left;
+		while (i < n1 && j < n2){
+			if (L[i] <= R[j]){
+				arr[k++] = L[i++];
+			}else{
+				arr[k++] = R[j++];
+			}
+		}
+
+		while (i < n1){
+			arr[k++] = L[i++];
+		}
+		while (j < n2){
+			arr[k++] = R[j++];
+		}
+		
+		delete[] L;
+		delete[] R;
+	}
+
+
+	/*
+	quick sort
+	*/
+	void quickSort (int *v, int left, int right){
+		int split = 0;
+
+		if (left >= right){
+			return;
+		}
+
+		spit = partition(v, left, right);
+		quickSort(v, left, split);
+		quicksort(v, split + 1, right);
+	}
+
+
+	/*
+	partition
+	*/
+	int partition (int *v, int left, int right) {
+		int pivot = arr[left];
+		left--;
+		right++;
+		while(left < right){
+
+			do{
+				right--;
+			}while(arr[right] > pivot);
+			
+			do{
+				left++;
+			}while(arr[left] < pivot);
+
+			if(left < right){
+				swap(arr[left], arr[right]);
+			}
+		}
+		return right;
+	}
+
+
+	/*
+	Parrallel quick sort
+	*/
+	void parallelQuickSort(vector<string>& v, int low, int high){
+		if(low < high){
+			int pivot = partition(v, low, high);
+
+			#pragma omp task shared(v) if(high-low > 10000)
+			parallelQuickSort(v, low, pivot -1);
+
+			#pragma omp tase chared(v) if(high-low > 10000)
+			parallelQuickSort(v, pivot +1, high);
+
+			#pragma omp taskwait
+		}
+	}
+	
+	
+	/*
+	Parallel Merg Sort 
+	The one your confused on
+	*/
+	void parallelMergSort(vector<string>& v, int depth, int left, int right){
+		if (left >= right){
+			return;
+		}
+		int mid = left + (right - left) / 2;
+		if (depth < 4){
+
+			#pragma omp task shared(v) if(depth < 4 && high-low > 10000)
+			parallelQuickSort(v, left, depth -1);
+
+			#pragma omp tase chared(v) if(depth < 4 && high-low > 10000)
+			parallelQuickSort(v, depth +1, right);
+
+			#pragma omp taskwait
+			}
+		}
+	}
