@@ -11,6 +11,12 @@
 #include <iostream>
 #include <vector>				// used to create and use vectors
 #include <fstream>
+/*
+The # include <parallel/algorithm> has been throwing this error
+#include errors detected. Please update your includePath. Syntax errors for this file will not be reported until included files are found.
+I am not sure why I have uninstalled and reinstalled the mingw64 however I still am having problems
+
+*/
 #include <parallel/algorithm> 	// used for sort function
 #include <omp.h>              	// used for OpenMP directives
 #include <ctime>             	// used for seeding randome number generator
@@ -43,6 +49,15 @@ int main()
 	//add in the code to validate the user's input
 	//make sure the user entered in an integer 1 through 500 (and that they actually entered in an integer)
 	
+	while(!cin || (num_threads < 1 || num_threads > 500)){
+		cin.clear();
+		cin.ignore(100, '\n');
+		cout << "\nOops! You need to add a valid Number (1-500): ";
+		cin >> num_threads;
+	}
+	cin.ignore(100, '\n');
+
+
 	omp_set_dynamic(false);
     omp_set_num_threads(num_threads);
 	cout << "\nNumber of Threads Used: " << num_threads << endl;
@@ -105,7 +120,20 @@ int main()
 		Print out result to screen.
 		
      *********************************************************************************/
+	scramble(nums);
+	scramble(words);
 	
+	start = chrono::high_resolution_clock::now();
+   	bubbleSort(nums);
+    end = chrono::high_resolution_clock::now();
+    cout << "\nBubble sort (int): " 
+	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
+
+    start = chrono::high_resolution_clock::now();
+    bubbleSort(words);
+    end = chrono::high_resolution_clock::now();
+    cout << "Bubble sort (words): " 
+	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
     /*********************************************************************************
 		MERGE SORT
@@ -113,7 +141,20 @@ int main()
 		do all the same stuff described in bubble sort except call the 
 		mergeSort function
      *********************************************************************************/
+	scramble(nums);
+	scramble(words);
+	
+	start = chrono::high_resolution_clock::now();
+   	mergeSort(nums, 0, nums.size() - 1);
+    end = chrono::high_resolution_clock::now();
+    cout << "\nMerge sort (int): " 
+	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
+    start = chrono::high_resolution_clock::now();
+    mergeSort(words, 0, words.size() - 1);
+    end = chrono::high_resolution_clock::now();
+    cout << "Merge sort (words): " 
+	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
     /*********************************************************************************
 		PARALLEL MERGE SORT
@@ -121,7 +162,20 @@ int main()
 		do all the same stuff described in bubble sort except call the 
 		parallelMergeSort function
      *********************************************************************************/
+	scramble(nums);
+	scramble(words);
+	
+	start = chrono::high_resolution_clock::now();
+   	parallelMergSort(nums, 0, nums.size() - 1, 0);
+    end = chrono::high_resolution_clock::now();
+    cout << "\nParallel merge sort (int): " 
+	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
+    start = chrono::high_resolution_clock::now();
+    parallelMergSort(words, 0, words.size() - 1, 0);
+    end = chrono::high_resolution_clock::now();
+    cout << "Parallel merge sort (words): " 
+	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
     /*********************************************************************************
 		QUICK SORT
@@ -129,7 +183,20 @@ int main()
 		do all the same stuff described in bubble sort except call the 
 		quicksort function
      *********************************************************************************/
+	scramble(nums);
+	scramble(words);
+	
+	start = chrono::high_resolution_clock::now();
+   	quickSort(nums, 0, nums.size() - 1);
+    end = chrono::high_resolution_clock::now();
+    cout << "\nQuick sort(int): " 
+	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
+    start = chrono::high_resolution_clock::now();
+    quickSort(words, 0, words.size() - 1);
+    end = chrono::high_resolution_clock::now();
+    cout << "Quick sort(words): " 
+	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
     /*********************************************************************************
 		PARALLEL QUICK SORT
@@ -137,7 +204,20 @@ int main()
 		do all the same stuff described in bubble sort except call the 
 		parallelQuickSort function
      *********************************************************************************/
+	scramble(nums);
+	scramble(words);
+	
+	start = chrono::high_resolution_clock::now();
+   	parallelQuickSort(nums, 0, nums.size() - 1);
+    end = chrono::high_resolution_clock::now();
+    cout << "\nParrallel Quick Sort (int): " 
+	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
+    start = chrono::high_resolution_clock::now();
+    parallelQuickSort(words, 0, words.size() - 1);
+    end = chrono::high_resolution_clock::now();
+    cout << "Parrallel Quick Sort (words): " 
+	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
     return 0; 
 }
 
@@ -216,151 +296,153 @@ void scramble(vector<T>& v)
 // Implement all the sort algorithms below that were described in the assignment
 
 /*
-Bubble Sort
+Bubble Sort: compares each pair to the next item and swaps if its in the incorect order
 */
-void bubbleSort(int *arr, int size){
-		int tempForSwap;
-		for(int i = 0; i < size - 1; i++){
-			for(int j = 0; j < size - i - 1; j++){
-				if(arr[j] > arr[j + 1]){
-					tempForSwap = arr[j];
-					arr[j] = arr[j + 1];
-					arr[j + 1] = tempForSwap;
+template <typename T>
+void bubbleSort(vector<T>& v){
+		T tempForSwap;
+		for(int i = 0; i < v.size() - 1; i++){
+			for(int j = 0; j < v.size() - i - 1; j++){
+				if(v[j] > v[j + 1]){
+					tempForSwap = v[j];
+					v[j] = v[j + 1];
+					v[j + 1] = tempForSwap;
 				}
 			}
 		}
 	}
 
 	/*
-	Merg Sort
+	Merg Sort: divides into 2 lists and then sorts through them and merges them back
 	*/
-	void MergSort(int arr[], int beg, int end){
-		int mid = 0;
+template <typename T>
+void mergeSort(vector<T>& v, int beg, int end){
+	int mid = 0;
 
-		if (beg < end){
-			mid = (beg + end) / 2;
+	if (beg < end){
+		mid = (beg + end) / 2;
 
-			MergeSort(arr, beg, mid);
-			MergeSort(arr, mid + 1, end);
-			Merge(arr, beg, mid, end);
-		}
+		mergeSort(v, beg, mid);
+		mergeSort(v, mid + 1, end);
+		merge(v, beg, mid, end);
+	}
+}
+
+
+
+/*
+Partition: divides and conquers for quicksort
+*/
+template <typename T>
+int partition(vector<T>& v, int left, int right) {
+   T pivot = v[left]; 
+   left--;
+   right++;
+   while(left < right){
+	   do{
+		   right--;
+	   }while(v[right] > pivot);
+	   
+	   do{
+		   left++;
+	   }while(v[left] < pivot);
+	  
+	   if(left < right)
+		swap(v[left], v[right]);
+   }
+   return right;
+} 
+
+
+/*
+quick sort: divides and conquers 
+*/
+template <typename T>
+void quickSort(vector<T>& v, int left, int right) {
+	int split = 0;
+	if (left >= right) {
+		return;
 	}
 
-	/*
-	Merge function
-	*/
-	void Merge (int arr[], int left, int mid, int right){
-		int n1 = mid - left + 1;
-		int n2 = right - mid;
+	split = partition(v, left, right);
+	quickSort(v, left, split); 
+	quickSort(v, split + 1, right);
+}
+/*
+Parallel quick sort: will pivot and sort at the same time
+*/
+template <typename T>
+void parallelQuickSort(vector<T>& v, int left, int right)
+{
+    if (left < right)
+    {
+       int pivot = partition(v, left, right);
+        
+		#pragma omp task shared(v) if(right-left > 10000)
+		parallelQuickSort(v, left, pivot - 1);
+        
+        #pragma omp task shared(v) if(right-left > 10000)
+		parallelQuickSort(v, pivot + 1, right);
 
-		int* L = new int[n1];
-		int* R = new int[n2];
-
-		for (int i = 0; i < n1; ++i){
-			L[i] = arr[left + 1];
-		}
-		for (int J = 0; j < n2; ++i){
-			R[j] = arr[mid + 1 + j];
-		}
-
-		inti = 0, j = 0, k = left;
-		while (i < n1 && j < n2){
-			if (L[i] <= R[j]){
-				arr[k++] = L[i++];
-			}else{
-				arr[k++] = R[j++];
-			}
-		}
-
-		while (i < n1){
-			arr[k++] = L[i++];
-		}
-		while (j < n2){
-			arr[k++] = R[j++];
-		}
-		
-		delete[] L;
-		delete[] R;
-	}
-
-
-	/*
-	quick sort
-	*/
-	void quickSort (int *v, int left, int right){
-		int split = 0;
-
-		if (left >= right){
-			return;
-		}
-
-		spit = partition(v, left, right);
-		quickSort(v, left, split);
-		quicksort(v, split + 1, right);
-	}
-
-
-	/*
-	partition
-	*/
-	int partition (int *v, int left, int right) {
-		int pivot = arr[left];
-		left--;
-		right++;
-		while(left < right){
-
-			do{
-				right--;
-			}while(arr[right] > pivot);
-			
-			do{
-				left++;
-			}while(arr[left] < pivot);
-
-			if(left < right){
-				swap(arr[left], arr[right]);
-			}
-		}
-		return right;
-	}
-
-
-	/*
-	Parrallel quick sort
-	*/
-	void parallelQuickSort(vector<string>& v, int low, int high){
-		if(low < high){
-			int pivot = partition(v, low, high);
-
-			#pragma omp task shared(v) if(high-low > 10000)
-			parallelQuickSort(v, low, pivot -1);
-
-			#pragma omp tase chared(v) if(high-low > 10000)
-			parallelQuickSort(v, pivot +1, high);
-
-			#pragma omp taskwait
-		}
-	}
+        #pragma omp taskwait
+    }
+}
 	
 	
-	/*
-	Parallel Merg Sort 
-	The one your confused on
-	*/
-	void parallelMergSort(vector<string>& v, int depth, int left, int right){
-		if (left >= right){
-			return;
-		}
+/*
+Parallel Merge Sort: divides the list and then sorts through it at the same time
+*/
+template <typename T>
+void parallelMergSort(vector<T>& v, int left, int right, int depth)
+{
+	if (left < right){
 		int mid = left + (right - left) / 2;
-		if (depth < 4){
+			if (depth < 4){
+				#pragma omp parallel sections
+				{ 
+			// never put curly brases on these only on the omp parallel sections and not on the same line
+					#pragma omp section
+						parallelMergSort(v, left, mid, depth + 1);
 
-			#pragma omp task shared(v) if(depth < 4 && high-low > 10000)
-			parallelQuickSort(v, left, depth -1);
-
-			#pragma omp tase chared(v) if(depth < 4 && high-low > 10000)
-			parallelQuickSort(v, depth +1, right);
-
-			#pragma omp taskwait
-			}
+					#pragma omp section
+						parallelMergSort(v, mid + 1, right, depth + 1);	
+				}
+			}else{
+				parallelMergSort(v, left, mid, depth + 1);
+				parallelMergSort(v, mid + 1, right, depth + 1);
 		}
+	merge(v, left, mid, right);
 	}
+}
+
+	/*
+	Merge function: used for merg sort and parallel merge sort
+	*/
+template <typename T>
+void merge(vector<T>& v, int left, int mid, int right) {
+	int n1 = mid - left + 1; 
+    int n2 = right - mid;    
+
+    vector<T> leftV(n1);
+	vector<T> rightV(n2);
+
+    for (unsigned int i = 0; i < leftV.size(); ++i)
+        leftV[i] = v[left + i];
+    for (unsigned int j = 0; j < rightV.size(); ++j)
+        rightV[j] = v[mid + 1 + j];
+
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2) {
+        if (leftV[i] <= rightV[j])
+            v[k++] = leftV[i++];
+        else
+            v[k++] = rightV[j++];
+    }
+
+
+    while (i < n1) 
+		v[k++] = leftV[i++];
+    while (j < n2) 
+		v[k++] = rightV[j++];
+
+}
